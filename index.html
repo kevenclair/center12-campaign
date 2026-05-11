@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Individual Donor Fundraising Campaign Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --gold: #c9922a;
+    --gold-light: #f0d49a;
+    --cream: #faf7f2;
+    --sage: #4a7c6f;
+    --sage-light: #e8f0ee;
+    --rule: #ddd5c8;
+    --text: #3a3530;
+    --muted: #7a726a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--ink);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,146,42,0.2);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,146,42,0.12);
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .cover h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 6vw, 68px);
+    font-weight: 700;
+    line-height: 1.05;
+    color: white;
+    margin-bottom: 28px;
+    max-width: 700px;
+  }
+
+  .cover-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 480px;
+    margin-bottom: 52px;
+    line-height: 1.8;
+  }
+
+  .cover-goal {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(201,146,42,0.12);
+    border: 1px solid rgba(201,146,42,0.35);
+    border-radius: 4px;
+    padding: 16px 28px;
+  }
+
+  .cover-goal .amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+
+  .cover-goal .label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .divider-line {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    margin: 0;
+  }
+
+  /* SECTION STRUCTURE */
+  .section {
+    padding: 80px 60px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 36px;
+    line-height: 1.15;
+  }
+
+  /* ACTION ITEMS */
+  .action-item {
+    border-top: 1px solid var(--rule);
+    padding: 36px 0;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 28px;
+    align-items: start;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .action-item:nth-child(1) { animation-delay: 0.05s; }
+  .action-item:nth-child(2) { animation-delay: 0.1s; }
+  .action-item:nth-child(3) { animation-delay: 0.15s; }
+  .action-item:nth-child(4) { animation-delay: 0.2s; }
+  .action-item:nth-child(5) { animation-delay: 0.25s; }
+  .action-item:nth-child(6) { animation-delay: 0.3s; }
+  .action-item:nth-child(7) { animation-delay: 0.35s; }
+  .action-item:nth-child(8) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .item-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .item-body {}
+
+  .item-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    background: var(--sage-light);
+    border-radius: 2px;
+    padding: 3px 8px;
+    margin-bottom: 10px;
+  }
+
+  .item-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .item-support {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .item-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .item-bullets li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 5px 0 5px 18px;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.6;
+  }
+  .item-bullets li:last-child { border-bottom: none; }
+
+  .item-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 11px;
+    top: 7px;
+  }
+
+  /* SUMMARY BAR */
+  .summary-bar {
+    background: var(--ink);
+    color: white;
+    padding: 60px;
+  }
+
+  .summary-bar-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .summary-bar .section-title {
+    color: white;
+    margin-bottom: 40px;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+  }
+
+  .metric-card {
+    border: 1px solid rgba(201,146,42,0.25);
+    border-radius: 4px;
+    padding: 24px 20px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .metric-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 32px 60px;
+    border-top: 1px solid var(--rule);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    .cover, .section, .summary-bar { padding: 48px 28px; }
+    .action-item { grid-template-columns: 1fr; gap: 8px; }
+    .item-number { font-size: 28px; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER BANNER -->
+<div style="background: var(--gold); padding: 10px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+  <div style="font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--ink);">Center 12</div>
+  <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); opacity: 0.75;">Board Working Document &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; May 2026</div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Center 12 &nbsp;·&nbsp; Fundraising Strategy &amp; Action Plan</div>
+  <h1>Building a Sustainable Individual Donor Campaign</h1>
+  <p class="cover-sub">A strategic roadmap for raising $30,000 annually from a broad base of individual supporters — grounded in transparency, trust, and authentic community engagement.</p>
+  <div class="cover-goal">
+    <div>
+      <div class="amount">$30,000</div>
+      <div class="label">Annual Goal</div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTION ITEMS -->
+<div class="section">
+  <div class="section-label">Strategic Action Items</div>
+  <div class="section-title">Eight Pillars of the Campaign</div>
+
+  <!-- 1 -->
+  <div class="action-item">
+    <div class="item-number">01</div>
+    <div class="item-body">
+      <span class="item-tag">Foundation</span>
+      <div class="item-title">Shift Primary Fundraising to Individual Donors</div>
+      <p class="item-support">Foundation grants are competitive, restricted, and unpredictable. A broad individual donor base creates unrestricted, renewable revenue and builds genuine community ownership of your mission. Research consistently shows organizations with 500+ individual donors are more financially resilient than those relying on 3–5 foundation relationships.</p>
+      <ul class="item-bullets">
+        <li>Individual donors renew at 40–60% annually when properly stewarded — compounding growth year over year</li>
+        <li>Unrestricted gifts give leadership flexibility to respond to emerging needs</li>
+        <li>A donor base signals credibility to future funders, including foundations</li>
+        <li>Small donors become ambassadors, extending reach through word of mouth</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="action-item">
+    <div class="item-number">02</div>
+    <div class="item-body">
+      <span class="item-tag">Trust Infrastructure</span>
+      <div class="item-title">Build a Transparent, Donor-Facing Website</div>
+      <p class="item-support">First-time donors research organizations before giving. If they cannot quickly find financials, leadership, impact data, and a clear statement of need, most will not donate. Transparency is no longer optional — it is table stakes for earning trust from today's informed donor.</p>
+      <ul class="item-bullets">
+        <li>Publish your most recent IRS Form 990 and annual report with a prominent link</li>
+        <li>Display a real-time or quarterly-updated fund progress meter toward the $30,000 goal</li>
+        <li>Feature a "How We Use Funds" breakdown with clear percentages (program vs. admin vs. fundraising)</li>
+        <li>Include bios and photos of leadership and board members</li>
+        <li>Ensure your donation page is mobile-optimized and accepts credit/debit, PayPal, and ACH</li>
+        <li>Register with Charity Navigator, GuideStar/Candid, and GiveWell as applicable</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="action-item">
+    <div class="item-number">03</div>
+    <div class="item-body">
+      <span class="item-tag">Leadership Signal</span>
+      <div class="item-title">Activate the Board as Lead Donors</div>
+      <p class="item-support">100% board giving is the single most powerful signal of organizational health to prospective donors and larger funders. If the people closest to the mission won't give, why should strangers? Board members do not need to give large amounts — participation matters more than size. Their gifts anchor the campaign and unlock the credibility needed to ask others.</p>
+      <ul class="item-bullets">
+        <li>Set a policy requiring 100% board participation before the public campaign launches</li>
+        <li>Allow board members to give at personally meaningful levels — even $25 counts</li>
+        <li>Feature board giving participation (not amounts) prominently on the website and in appeals</li>
+        <li>Board members should each personally ask 5–10 people from their own networks</li>
+        <li>Consider a board-led matching challenge to double early gifts during campaign launch</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="action-item">
+    <div class="item-number">04</div>
+    <div class="item-body">
+      <span class="item-tag">Narrative</span>
+      <div class="item-title">Sharpen the Case for Support</div>
+      <p class="item-support">Donors give to clear, urgent, human needs — not to organizations. Your messaging must answer three questions instantly: What problem exists? What will you do about it? Why does my gift matter? Vague mission statements and institutional language are the enemy of fundraising. Concrete, specific, emotionally resonant language converts readers into donors.</p>
+      <ul class="item-bullets">
+        <li>Lead with one specific story of impact, not a list of programs or statistics</li>
+        <li>Name a concrete need: "Your $50 covers one child's supplies for a semester"</li>
+        <li>Quantify the gap: show donors exactly what $30,000 enables vs. what happens without it</li>
+        <li>Use consistent language across website, email, and social — donors notice inconsistency</li>
+        <li>Test your "elevator pitch" — if staff and board can't say it in 30 seconds, revise it</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="action-item">
+    <div class="item-number">05</div>
+    <div class="item-body">
+      <span class="item-tag">Pre-Launch</span>
+      <div class="item-title">Secure a Quiet Phase Before Going Public</div>
+      <p class="item-support">Major campaigns — from universities to small nonprofits — routinely secure 50–70% of their goal before any public announcement. Donors are social creatures: they give more confidently when others have already committed. Opening your public campaign at 30%+ of goal converts new donors at significantly higher rates than starting at zero. An empty thermometer is a hard ask; a half-full one creates momentum.</p>
+      <ul class="item-bullets">
+        <li>Target board members, the executive director, and close inner-circle supporters for private asks first</li>
+        <li>Frame it explicitly: "Your gift at this stage makes everyone else's gift possible"</li>
+        <li>Aim to have $8,000–$12,000 in committed gifts before any public announcement</li>
+        <li>Pledges count — but cash in hand is stronger; set a deadline for pledge fulfillment</li>
+        <li>Never manufacture the number: if you say $10,000 is locked in, it must be genuinely committed</li>
+        <li>Use the quiet phase total as the opening line of your public launch: "We're already one-third of the way there"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="action-item">
+    <div class="item-number">06</div>
+    <div class="item-body">
+      <span class="item-tag">Outreach Engine</span>
+      <div class="item-title">Execute a 1,000+ Touch Point Outreach Campaign</div>
+      <p class="item-support">Fundraising is a contact sport. Studies show donors typically need 5–7 exposures before making a first gift. With a goal of 300–500 donors, 1,000 meaningful touch points is a minimum threshold, not an aspiration. Touch points should be spread across channels and spaced strategically across the calendar year.</p>
+      <ul class="item-bullets">
+        <li>Email: 4–6 campaign-specific emails to your full list (beyond regular newsletters)</li>
+        <li>Social media: 3–4 posts per week across platforms during campaign windows</li>
+        <li>Direct mail: At minimum one personalized letter or postcard to warm contacts</li>
+        <li>Personal asks: Board and staff each make 10–20 direct phone or in-person requests</li>
+        <li>Events: At least one cultivation or stewardship event (can be virtual) per campaign cycle</li>
+        <li>Track touch points in a simple CRM (Little Green Light, Bloomerang, or even a spreadsheet)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="action-item">
+    <div class="item-number">07</div>
+    <div class="item-body">
+      <span class="item-tag">Revenue Strategy</span>
+      <div class="item-title">Launch a Monthly Giving Program</div>
+      <p class="item-support">Monthly donors give 42% more annually than one-time donors and retain at rates above 80% year over year. Even if just 50 donors give $25/month, that's $15,000 — half your goal — secured on autopilot. A recurring giving program is the fastest path to financial stability and reduces pressure on one-time campaign pushes.</p>
+      <ul class="item-bullets">
+        <li>Give the program a distinct name and identity (e.g., "The Circle," "Monthly Advocates")</li>
+        <li>Offer a simple one-click monthly option prominently on your donation page</li>
+        <li>Provide monthly givers with exclusive updates — a brief email or behind-the-scenes note</li>
+        <li>Aim for 15–20% of your total donor file to be monthly givers within 18 months</li>
+        <li>Upgrade one-time donors to monthly with a specific, low-ask amount (e.g., "Just $10/month")</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 8 (now removed) — stewardship moved here -->
+  <div class="action-item">
+    <div class="item-number">08</div>
+    <div class="item-body">
+      <span class="item-tag">Donor Retention</span>
+      <div class="item-title">Implement a Stewardship &amp; Acknowledgment System</div>
+      <p class="item-support">The average nonprofit loses 60–70% of first-time donors. The primary reason: donors never heard how their gift was used. Acquiring a new donor costs 5–10x more than retaining an existing one. A simple, prompt, personal acknowledgment system is the highest-ROI investment in your campaign — and it costs almost nothing.</p>
+      <ul class="item-bullets">
+        <li>Send a personal thank-you within 48 hours of every gift — email at minimum, handwritten note for $250+</li>
+        <li>Send a year-end impact report to every donor summarizing what was accomplished</li>
+        <li>Contact donors at least once between campaigns with a non-ask update (news, a story, a milestone)</li>
+        <li>Acknowledge lapsed donors specifically — a targeted re-engagement message beats a generic appeal</li>
+        <li>Set a retention goal: aim for 55%+ of first-year donors to give again in year two</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider-line"></div>
+
+<!-- PLATFORM SECTION -->
+<div class="section">
+  <div class="section-label">Technology</div>
+  <div class="section-title">Campaign Technology Stack</div>
+
+  <div class="action-item">
+    <div class="item-number" style="font-size:28px; padding-top:8px;">★</div>
+    <div class="item-body">
+      <span class="item-tag" style="background:#fff3cd; color:#856404;">Donation Platform</span>
+      <div class="item-title">Zeffy — Donation Processing &amp; Donor Records</div>
+      <p class="item-support">Completely free — no platform fees, no transaction fees. Zeffy is funded through optional donor tips, meaning every dollar raised goes to your mission. It handles donation processing, donor records, automated tax receipts, and basic reporting. It is not a messaging tool — outreach is handled separately through Mailchimp.</p>
+      <ul class="item-bullets">
+        <li>Zero cost to the nonprofit — every dollar donated reaches the mission</li>
+        <li>Clean, modern donation pages that work well on mobile</li>
+        <li>Handles one-time and recurring gifts, event tickets, and peer-to-peer campaigns</li>
+        <li>Automatically sends tax receipts upon completion of each gift</li>
+        <li>Invest time upfront making the donation page look trustworthy — clear mission statement, logo, and a progress meter toward the $30,000 goal</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="item-number" style="font-size:28px; padding-top:8px;">★</div>
+    <div class="item-body">
+      <span class="item-tag" style="background:#fff3cd; color:#856404;">Outreach Platform</span>
+      <div class="item-title">Mailchimp — Donor Outreach &amp; Appeals</div>
+      <p class="item-support">Mailchimp is where you build and send all donor appeals, campaign updates, and stewardship emails. Free up to 500 contacts, with good-looking templates and an interface most staff and volunteers already know. It connects directly to Zeffy, completing the donation loop automatically.</p>
+      <ul class="item-bullets">
+        <li>Free up to 500 contacts — sufficient for the early stages of this campaign</li>
+        <li>Easy to build branded email templates that match your donation page</li>
+        <li>Tracks open rates, click rates, and unsubscribes to help refine messaging over time</li>
+        <li>Integrates with Zeffy so new donors are added to your list automatically</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid var(--rule); padding: 28px 0 0 0; margin-top: 8px;">
+    <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage); margin-bottom: 16px;">The Donation Loop</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0;">
+      <div style="padding: 16px; background: var(--sage-light); border-radius: 4px 0 0 4px; font-size: 12px; line-height: 1.6;">
+        <div style="font-weight: 600; color: var(--ink); margin-bottom: 4px;">① Appeal sent</div>
+        Mailchimp delivers the ask to your contact list
+      </div>
+      <div style="padding: 16px; background: #ddeee9; font-size: 12px; line-height: 1.6;">
+        <div style="font-weight: 600; color: var(--ink); margin-bottom: 4px;">② Donor clicks</div>
+        Donate button links directly to your Zeffy page
+      </div>
+      <div style="padding: 16px; background: var(--sage-light); font-size: 12px; line-height: 1.6;">
+        <div style="font-weight: 600; color: var(--ink); margin-bottom: 4px;">③ Gift completed</div>
+        Zeffy processes payment and sends tax receipt
+      </div>
+      <div style="padding: 16px; background: #ddeee9; border-radius: 0 4px 4px 0; font-size: 12px; line-height: 1.6;">
+        <div style="font-weight: 600; color: var(--ink); margin-bottom: 4px;">④ Record synced</div>
+        Donor pushed back to Mailchimp automatically
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--muted); margin-top: 16px; line-height: 1.8;">Configure the Zeffy–Mailchimp integration from day one. When someone donates, they should flow into your email list automatically — no manual entry, no gaps.</p>
+  </div>
+
+</div>
+
+<div class="divider-line"></div>
+
+<!-- OPERATIONS SECTION -->
+<div class="section">
+  <div class="section-label">Operations</div>
+  <div class="section-title">Running the Campaign: People &amp; Time</div>
+
+  <!-- Board Time -->
+  <div class="action-item">
+    <div class="item-number" style="font-size:28px; padding-top:8px;">◈</div>
+    <div class="item-body">
+      <span class="item-tag">Board Commitment</span>
+      <div class="item-title">What to Expect from Each Board Member</div>
+      <p class="item-support">Board members are not administrators — their role is relationship-driven. The time commitment is real but manageable, averaging 45 minutes to one hour per week across the year. Concentrated effort is required during the launch window and quiet phase; maintenance mode applies during quieter periods. Resistance is rarely about time — it is almost always about discomfort with asking. A one-time ask training session of 1–2 hours dramatically improves follow-through.</p>
+      <ul class="item-bullets">
+        <li>Quiet phase personal asks — identifying prospects, making calls, following up: 3–5 hours upfront</li>
+        <li>Processing their own gift: 30 minutes — trivial in time, essential in signal</li>
+        <li>Reviewing campaign materials and updates: 30 minutes per month</li>
+        <li>Sharing posts and forwarding emails during active windows: 15–20 minutes per week</li>
+        <li>Attending one cultivation or stewardship event per cycle: 2–3 hours including travel</li>
+        <li>Annual total per board member: 40–60 hours, or roughly 1 hour per week</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Campaign Point Person -->
+  <div class="action-item">
+    <div class="item-number" style="font-size:28px; padding-top:8px;">◈</div>
+    <div class="item-body">
+      <span class="item-tag">Staffing</span>
+      <div class="item-title">The Campaign Needs a Dedicated Point Person</div>
+      <p class="item-support">Ambiguous ownership is the most common operational failure in small nonprofit fundraising. When everyone is loosely responsible, no one is truly accountable — and donors fall through the cracks. One person must own the campaign end to end. This is typically the executive director or a dedicated staff or contracted role.</p>
+      <ul class="item-bullets">
+        <li>Board members can assist with personal touches — calls, handwritten notes — but must never own the data</li>
+        <li>Mixing volunteer board members into data entry creates inconsistency and gaps</li>
+        <li>One point person with clear authority over the donor database is non-negotiable at any scale</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Point Person Duties -->
+  <div class="action-item">
+    <div class="item-number" style="font-size:28px; padding-top:8px;">◈</div>
+    <div class="item-body">
+      <span class="item-tag">Duties &amp; Time</span>
+      <div class="item-title">Point Person: Expected Responsibilities &amp; Weekly Hours</div>
+      <p class="item-support">The point person's role spans database management, donor communications, board coordination, and campaign reporting. During active campaign windows the workload increases substantially; the role eases during quieter cultivation periods. Total time across the year averages 8–12 hours per week, making this a substantive part-time commitment at minimum.</p>
+      <ul class="item-bullets">
+        <li><strong>Donation tracking &amp; data hygiene</strong> — logging gifts, updating records, correcting contact info: 3–5 hrs/week during campaign windows, 1–2 hrs/week otherwise</li>
+        <li><strong>Acknowledgments</strong> — overseeing automated receipts, writing personal follow-up emails for first-time donors, coordinating handwritten notes for gifts over $250: 15–20 min/day during peak giving</li>
+        <li><strong>Board coordination</strong> — providing board members with prospect list templates, tracking who has made their asks, sending weekly campaign updates to the board: 1–2 hrs/week</li>
+        <li><strong>Campaign communications</strong> — drafting or managing emails, social posts, and appeals in coordination with leadership: 2–3 hrs/week during active windows</li>
+        <li><strong>Reporting</strong> — maintaining a live dashboard of progress toward goal, donor count, retention rate, and touch points logged: 1 hr/week</li>
+        <li><strong>Platform management</strong> — keeping Zeffy or Bloomerang current, running reports, managing recurring gift issues: 1 hr/week ongoing</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider-line"></div>
+<div class="summary-bar">
+  <div class="summary-bar-inner">
+    <div class="section-label" style="color:var(--gold);">Campaign Benchmarks</div>
+    <div class="section-title">What Success Looks Like</div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">300–500</div>
+        <div class="metric-label">Individual Donors Needed</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">1,000+</div>
+        <div class="metric-label">Annual Touch Points</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">100%</div>
+        <div class="metric-label">Board Participation</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">55%+</div>
+        <div class="metric-label">Donor Retention Rate</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">15–20%</div>
+        <div class="metric-label">Monthly Givers (target)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">48 hrs</div>
+        <div class="metric-label">Thank-You Turnaround</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Center 12 &nbsp;·&nbsp; Individual Donor Campaign Plan &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; 2026
+</footer>
+
+</body>
+</html>
